@@ -1,5 +1,5 @@
 <template>
-  <h1>Редактирование сотрудника ({{ userId }})</h1>
+  <h1>Редактирование сотрудника ({{ userId }})</h1>{{ user }}
   <div v-if=" user !== undefined">
     <userCard :userData="user" @saveUser="saveUser" @cancelSaving="cancelSaving" />
 </div>
@@ -43,7 +43,7 @@ export default defineComponent({
       userDataNew.value.id = Number(userData.id);  
       flagSendDataToServer.value = true;  
       store.resetFlagServerResponce();  
-      store.userEditComplete({ id: userDataNew.value.id, fio: userDataNew.value.fio, birthday: userDataNew.value.birthday });  
+      store.userEditComplete({ id: userDataNew.value.id, fio: userDataNew.value.fio, birthday: new Date(userDataNew.value.birthday) });  
     };  
 
     const cancelSaving = () => {  

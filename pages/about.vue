@@ -24,6 +24,7 @@
         </ul>
 
         <hr>
-        <p> Выполнил +7 918 125 5205 - Сергей Михайлов</p>
+        <p> Выполнил +7 918 125 5205 - Сергей Михайлов.</p> 
+        <p><a href=https://github.com/abcolut/sotrudnik-list>Github</a></p>
     </section>
 </template>

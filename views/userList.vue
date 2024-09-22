@@ -14,7 +14,7 @@
         <div @click="currentUserId = Number(user.id)" :class="{ selected: user.id == currentUserId }">
           <div class="userCell userId pointer" @click="currentUser = user">{{ user.id }}</div>
           <div class="userCell userFio pointer" @click="currentUser = user">{{ user.fio }}</div>
-          <div class="userCell userBirthday pointer" @click="currentUser = user">{{ user.birthday }}</div>
+          <div class="userCell userBirthday pointer" @click="currentUser = user">{{ user.birthday.toLocaleDateString("ru-RU") }}</div>
           <div class="userCell userDell pointer" @click="currentUserDelete = user">Х</div>
           <div class="userCell userDell pointer" @click="editUserInNewWindow(user)">Edit (2)</div>
         </div>

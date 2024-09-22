@@ -1,7 +1,7 @@
 <template>
     <h1>Добавление сотрудника</h1>
 
-    <userCard :userData="{ fio: fioPreset, birthday: birthdayPreset }" @saveUser="saveUser" @cancelSaving="cancelSaving"
+    <userCard :userData="{ fio: fioPreset, birthday: new Date(birthdayPreset) }" @saveUser="saveUser" @cancelSaving="cancelSaving"
         @saveUserComplete="saveUserComplete"  :key="'component' + componentKey" />        
 
 </template>
@@ -19,7 +19,7 @@ export default defineComponent({
     setup() {
         const store = useStoreUsers();
         const { serverResponce, serverResponceText } = toRefs(store);   
-        const userDataNew = ref<User>({ fio: '', birthday: '' } as User);
+        const userDataNew = ref<User>({ fio: '', birthday: new Date('') } as User);
         const fioPreset = ref<string>('');
         const birthdayPreset = ref<string>('2001-01-01');
         const componentKey = ref<Number>(0);
@@ -35,7 +35,7 @@ export default defineComponent({
         const saveUser = (userData: User) => {
             userDataNew.value.fio = userData.fio;
             userDataNew.value.birthday = userData.birthday;
-            store.userAdd({ fio: userDataNew.value.fio, birthday: userDataNew.value.birthday });
+            store.userAdd({ fio: userDataNew.value.fio, birthday: new Date(userDataNew.value.birthday) });
         };
 
         const cancelSaving = () => {

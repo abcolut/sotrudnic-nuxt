@@ -7,9 +7,9 @@
                 </label>
             </p>
             <p>
-                <label>Дата роджения:
+                <label>Дата роджения: {{ birthday }}
                     <br><input v-model="birthday" type="date" autocomplete="off" placeholder="Дата рождения"
-                        min="1960-01-01" max="2025-01-01">
+                        min="1970-01-01" max="2025-01-01">
                 </label>
             </p>
 
@@ -20,7 +20,7 @@
 
                 <button @click="cancelSaving()" class="btn btn-info"> Отмена </button>
             </p>
-            <p>Вероятность успешной записи на сервер ~50%</p>
+            <p>Вероятность успешной записи на сервер ~30%</p>
         </div>
     </div>
     <userServerResponce />
@@ -46,13 +46,16 @@ export default defineComponent({
     setup(props, { emit }) {
         const store = useStoreUsers();
         const userName = ref(props.userData.fio);
-        const birthday = ref(props.userData.birthday);
+        const birthday2 = props.userData.birthday;
+        const birthday = ref('')
         const errors = ref({ fio: false, birthday: false });
-        const { flagServerResponce, serverError, serverResponce, serverResponceText } = toRefs(store);   
+        const { flagServerResponce, serverResponce, serverResponceText } = toRefs(store);
 
         const checkValidation = () => {
             errors.value.fio = userName.value.length >= 2;
-            errors.value.birthday = birthday.value !== '';
+
+            let date_regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/;
+            errors.value.birthday = !(date_regex.test(birthday.value))
         };
 
         watch(userName, () => {
@@ -71,16 +74,21 @@ export default defineComponent({
             }
         });
 
+        // const dataLocal = computed(() => {
+        //     return new Date(birthday.value).toISOString().slice(0, 10);
+        // });
+
         const initUser = () => {
-            //const store = useStoreUsers();  
             store.resetFlagServerResponce();
             userName.value = props.userData.fio;
-            birthday.value = props.userData.birthday;
+            const aa = props.userData.birthday;
+            birthday.value = new Date(birthday2).toISOString().slice(0, 10)
             checkValidation();
         };
 
         const saveUser = () => {
-            const ud: User = { fio: userName.value, birthday: birthday.value };
+            //console.log(birthday.value)
+            const ud: User = { fio: userName.value, birthday: new Date(birthday.value) };
             if (props.userData.id !== undefined) {
                 ud.id = props.userData.id;
             }
@@ -101,6 +109,7 @@ export default defineComponent({
             errors,
             serverResponce,
             serverResponceText,
+            birthday2,
             saveUser,
             cancelSaving
         };

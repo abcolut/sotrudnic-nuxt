@@ -3,7 +3,7 @@
 </template>
 
 <script lang="ts">
-import userList from '~/views/userList'
+import userList from '~/views/userList.vue'
 import { defineComponent } from 'vue';
 
 export default defineComponent({
