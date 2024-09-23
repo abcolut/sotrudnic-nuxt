@@ -7,7 +7,7 @@
                 </label>
             </p>
             <p>
-                <label>Дата роджения: {{ birthday }}
+                <label>Дата роджения: 
                     <br><input v-model="birthday" type="date" autocomplete="off" placeholder="Дата рождения"
                         min="1970-01-01" max="2025-01-01">
                 </label>
@@ -109,10 +109,18 @@ export default defineComponent({
             errors,
             serverResponce,
             serverResponceText,
-            birthday2,
+            //birthday2,
             saveUser,
             cancelSaving
         };
     }
 });  
 </script>
+
+<style scoped>
+button:disabled {
+  background: #ccc;
+  border-color: #ccc;
+}
+
+</style>

@@ -1,10 +1,10 @@
 <template>
-  <h1>Редактирование сотрудника ({{ userId }})</h1>{{ user }}
+  <h1>Редактирование сотрудника (#{{ userId }})</h1>
   <div v-if=" user !== undefined">
     <userCard :userData="user" @saveUser="saveUser" @cancelSaving="cancelSaving" />
 </div>
 <div v-else>
-  <h1>Карточки сотрудника не существует</h1>
+  <h1 class="brown">Карточка сотрудника отсутсвует</h1>
 </div>
 </template>
 

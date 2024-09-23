@@ -3,6 +3,11 @@
         <div class="flexCenter">
             <div class="section">
                 <h1>Удаление пользователя (модально)</h1>
+                <p align="center">
+                    <p>#{{ userData.id }} / {{ userData.fio }} ({{ userData.birthday.toISOString().slice(0, 10) }})</p>
+                    <button @click="deleteUser2(userData)" class="btn btn-warning">Подтвердить удаление </button>
+                    <button @click="cancelSaving" class="btn btn-second">Отмена </button>
+                </p>
                 <userServerResponce @saveUserComplete="saveUserComplete" @cancelSaving="cancelSaving" />
             </div>
         </div>
@@ -27,6 +32,7 @@ export default defineComponent({
     emits: ['resetCurrentUser', 'deleteUserComplete'],
     components: { userServerResponce },
     setup(props, { emit }) {
+        const userData = ref<User>(props.currentUser);
         const store = useStoreUsers();
         const deleteUser2 = (userData: User) => {
             const store = useStoreUsers();
@@ -44,13 +50,15 @@ export default defineComponent({
         };
 
         onMounted(() => {
-            deleteUser2(props.currentUser);
+            //deleteUser2(props.currentUser);
         });
 
         return {
+            userData,
             saveUserComplete,
             cancelSaving,
-            ...toRefs(props)  
+            deleteUser2,
+            ...toRefs(props)
         };
     }
 });  

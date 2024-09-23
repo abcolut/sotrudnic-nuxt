@@ -1,6 +1,6 @@
 <template>
     <section>
-        <h1>ТЗ</h1>
+        <h1>Список сотрудников - ТЗ</h1>
         <p><b>Основные функции и требования:</b></p>
         <ul>
             <li>Инициализировать список контактов (id, фио, дата рождения)</li>
@@ -24,7 +24,14 @@
         </ul>
 
         <hr>
-        <p> Выполнил +7 918 125 5205 - Сергей Михайлов.</p> 
         <p><a href=https://github.com/abcolut/sotrudnik-list>Github</a></p>
+        <p><b>Исполнитель Сергей Михайлов:</b></p>
+        <ul>
+            <li>+7-918-125-52-05</li>
+            <li><a href="https://wa.me/79181255205" target="_blank">+7-918-125-52-05 (whatsapp)</a></li>
+            <li><a href="https://tlgg.ru/Serge_mikhailov" target="_blank">Telegram</a></li>
+        </ul>
+
+        Работа выполнена на Nuxt3. Composition API с использованием TypeScript
     </section>
 </template>
